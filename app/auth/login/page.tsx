@@ -1,89 +1,84 @@
 // /app/auth/login/page.tsx
 'use client';
+
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
+import '../../globals.css';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      router.push('/dashboard');
-    } else {
-      setError(data.message);
-    }
   };
 
   return (
     <div className="flex min-h-screen">
-      <div className="flex-1 bg-white flex flex-col justify-center items-start p-10">
-        <h1 className="text-4xl font-bold mb-4">Olá, Professor!</h1>
-        <p className="text-lg">faça seu login ou cadastro para acessar todas funcionalidades.</p>
+      {/* Left Section with Welcome Text */}
+      <div className="flex-1 relative bg-cover bg-center" style={{ backgroundImage: 'url(/school-bg.jpg)' }}>
+        <div className="absolute inset-0 bg-black bg-opacity-40" />
+        <div className="relative z-10 flex flex-col justify-center items-start p-10 text-white">
+          <h1 className="text-5xl font-bold mb-4">Olá, professor!</h1>
+          <p className="text-xl">Faça seu login ou cadastro</p>
+          <p className="text-xl">para acessar todas</p>
+          <p className="text-xl">as funcionalidades.</p>
+        </div>
       </div>
 
-      <div className="flex-1 relative bg-blue-500 bg-opacity-50 flex flex-col justify-center items-center p-10">
-        <div className="absolute inset-0 bg-blue-500 opacity-50" />
-        
-        <div className="relative z-10 bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+      {/* Right Section with Login Form */}
+      <div className="flex-1 bg-blue-500 bg-opacity-70 flex flex-col justify-center items-center p-10">
+        <div className=" p-8 rounded-lg shadow-md w-full max-w-md">
+          {/* Logo */}
           <div className="flex justify-center mb-6">
-            <img src="/logo.png" alt="Logo" className="w-24" />
+            <img src="/teacher-logo.png" alt="Teacher Web Logo" className="w-32" />
           </div>
 
-          {error && <p className="text-red-500 mb-4">{error}</p>}
-
+          {/* Login Form */}
           <form onSubmit={handleLogin}>
             <div className="mb-4">
-              <label className="block text-gray-700">Usuário</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full p-2 bg-transparent border-b-2 border-white rounded-none focus:outline-none focus:border-blue-500 placeholder-white"
+                placeholder="E-mail"
               />
             </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700">Senha</label>
+            <div className="mb-4 relative">
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full p-2 bg-transparent border-b-2 border-white rounded-none focus:outline-none focus:border-blue-500 placeholder-white"
+                placeholder="Senha"
               />
+              <Link href="#" className="absolute right-0 top-full mt-6 text-sm text-blue-500">Esqueci minha senha</Link>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+              className="w-full bg-white text-black p-2 rounded hover:bg-blue-600 transition"
             >
               Entrar
             </button>
           </form>
 
-          <div className="flex justify-between items-center mt-4">
-            <Link href="/auth/register" className="text-blue-500">
-              Criar Conta
+          {/* Create Account and Google Login */}
+          <div className="mt-6 flex flex-col space-y-4">
+            <Link href="/auth/register">
+              <button className="w-full bg-white text-black p-2 rounded hover:bg-gray-300 transition">
+                Criar Conta
+              </button>
             </Link>
-            <button className="text-blue-500">Entrar com o Google</button>
+            <button className="w-full flex items-center justify-center bg-black text-white p-2 rounded hover:bg-gray-300 transition">
+              <img src="/google-logo.png" alt="Google Logo" className="w-5 h-5 mr-2" />
+              ENTRAR COM GOOGLE
+            </button>
           </div>
         </div>
       </div>
