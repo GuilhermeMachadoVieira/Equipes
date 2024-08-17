@@ -21,8 +21,8 @@ export default function LoginPage() {
       <div
         className="flex-1 relative bg-cover bg-center"
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
-        <div className="relative z-10 flex flex-col justify-center items-start p-10 text-white h-full">
+        <div className="absolute inset-0 bg-black bg-opacity-30" />
+        <div className="relative z-10 flex flex-col  items-start p-10 text-white h-full">
           <h1 className="text-5xl font-bold mb-4">Olá, professor!</h1>
           <p className="text-xl">Faça seu login ou cadastro</p>
           <p className="text-xl">para acessar todas</p>
@@ -31,10 +31,10 @@ export default function LoginPage() {
       </div>
 
       {/* Right Section with Login Form */}
-      <div className="w-full max-w-md flex-none bg-blue-900 bg-opacity-80 flex flex-col backdrop-blur justify-center items-center p-10">
-        <div className="p-8 rounded-lg  w-full max-w-md">
+      <div className="w-full max-w-md flex-none bg-blue-900 bg-opacity-80 flex flex-col backdrop-blur justify-center items-center p-5">
+        <div className="p-6 rounded-lg  w-full max-w-md">
           {/* Logo */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-4">
             <img src="\escrita_preta_logo.png" alt="Teacher Web Logo" className="w-56" />
           </div>
 
