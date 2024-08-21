@@ -1,3 +1,4 @@
+// /auth/register
 'use client';
 
 import { useState } from 'react';
@@ -17,7 +18,7 @@ export default function RegisterPage() {
     <div className="flex min-h-screen"
     style={{ backgroundImage: 'url(/fatec-sorocaba.jpeg)' }}
     >
-      {/* Left Section with Welcome Text */}
+      {/* texto que fica na esquerda */}
       <div
         className="flex-1 relative bg-cover bg-center"
       >
@@ -30,7 +31,7 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* Right Section with Register Form */}
+      {/* aqui to criando um formulario que ta com os negócios de login dentro */}
       <div className="w-full max-w-md flex-none bg-blue-900 bg-opacity-80 flex flex-col backdrop-blur justify-center items-center p-5">
         <div className="p-6 rounded-lg  w-full max-w-md">
           {/* Logo */}
@@ -38,7 +39,7 @@ export default function RegisterPage() {
             <img src="\escrita_preta_logo.png" alt="Teacher Web Logo" className="w-56" />
           </div>
 
-          {/* Register Form */}
+          {/* aqui é o formulario com os campos */}
           <form onSubmit={handleRegister}>
             <div className="mb-4">
               <input
@@ -72,16 +73,16 @@ export default function RegisterPage() {
                 placeholder="Confirme a Senha"
               />
             </div>
-
+          {/* botão pra ir pra criart conta */}
             <button
               type="submit"
-              className="w-full bg-white text-black p-2 rounded-full rounded hover:bg-gray-300 transition"
+              className="w-full bg-white text-black p-2 rounded-full hover:bg-gray-300 transition"
             >
               Criar Conta
             </button>
           </form>
 
-          {/* Link to Login Page */}
+          {/* botão pra ir pra login */}
           <div className="mt-6 text-center">
             <p className="text-white">Já tem uma conta? <Link href="/auth/login" className="underline">Faça login</Link></p>
           </div>
