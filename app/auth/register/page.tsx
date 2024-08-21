@@ -6,6 +6,7 @@ import '../../globals.css';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');  // Adicionando o campo name
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -19,24 +20,24 @@ export default function RegisterPage() {
       return;
     }
 
-    // Simulando o processo de registro
+    // Limpar qualquer erro anterior
+    setError(null);
+
     try {
-      // Substitua esta parte por sua lógica real de criação de conta (ex: API call)
-      const response = await fetch('/api/register', {
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, name }),  // Enviando o campo name
       });
 
       if (response.ok) {
-        // Redirecionar ou exibir uma mensagem de sucesso
         alert('Conta criada com sucesso!');
-        // Redirecionar para a página de login
         window.location.href = '/auth/login';
       } else {
-        setError('Erro ao criar a conta. Tente novamente.');
+        const data = await response.json();
+        setError(data.message);
       }
     } catch (err) {
       console.error(err);
@@ -48,10 +49,7 @@ export default function RegisterPage() {
     <div className="flex min-h-screen"
     style={{ backgroundImage: 'url(/fatec-sorocaba.jpeg)' }}
     >
-      {/* texto que fica na esquerda */}
-      <div
-        className="flex-1 relative bg-cover bg-center"
-      >
+      <div className="flex-1 relative bg-cover bg-center">
         <div className="absolute inset-0 bg-black bg-opacity-30" />
         <div className="relative z-10 flex flex-col  items-start p-10 text-white h-full">
           <h1 className="text-5xl font-bold mb-4">Bem-vindo!</h1>
@@ -61,17 +59,26 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      {/* aqui to criando um formulario que ta com os negócios de login dentro */}
       <div className="w-full max-w-md flex-none bg-blue-900 bg-opacity-80 flex flex-col backdrop-blur justify-center items-center p-5">
         <div className="p-6 rounded-lg  w-full max-w-md">
-          {/* Logo */}
           <div className="flex justify-center mb-4">
             <img src="\escrita_preta_logo.png" alt="Teacher Web Logo" className="w-56" />
           </div>
 
-          {/* aqui é o formulario com os campos */}
           <form onSubmit={handleRegister}>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+            
+            <div className="mb-4">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full p-2 bg-transparent border-b-2 border-white rounded-none text-white focus:outline-none focus:border-blue-500 placeholder-white"
+                placeholder="Nome"
+              />
+            </div>
+
             <div className="mb-4">
               <input
                 type="email"
@@ -105,7 +112,6 @@ export default function RegisterPage() {
               />
             </div>
 
-          {/* botão pra ir pra criart conta */}
             <button
               type="submit"
               className="w-full bg-white text-black p-2 rounded-full hover:bg-gray-300 transition"
@@ -114,7 +120,6 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          {/* botão pra ir pra login */}
           <div className="mt-6 text-center">
             <p className="text-white">Já tem uma conta? <Link href="/auth/login" className="underline">Faça login</Link></p>
           </div>
