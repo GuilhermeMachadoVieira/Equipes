@@ -77,10 +77,12 @@ export default function LoginPage() {
                 Criar Conta
               </button>
             </Link>
+                     {/* botão pra entrar com o google, caso for usar eu deixei comentado... 
             <button className="w-full flex items-center rounded-full justify-center bg-black text-white p-2  hover:bg-gray-300 transition">
               <img src="/google-logo.png" alt="Google Logo" className="w-5 h-5 mr-2" />
               ENTRAR COM GOOGLE
             </button>
+            */}
           </div>
         </div>
       </div>
