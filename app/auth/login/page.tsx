@@ -64,7 +64,7 @@ export default function LoginPage() {
           {/* botão pra ir pra entrar */}
             <button
               type="submit"
-              className="w-full bg-white text-black p-2 rounded-full hover:bg-gray-300 transition"
+              className="w-full bg-white text-black p-2 rounded-full  hover:bg-gray-300 transition"
             >
               Entrar
             </button>
@@ -73,11 +73,14 @@ export default function LoginPage() {
           {/* botão pra ir pra area de registro */}
           <div className="mt-6 flex flex-col space-y-4">
             <Link href="/auth/register">
-              <button className="w-full bg-white rounded-full text-black p-2 hover:bg-gray-300 transition">
+              <button className="w-full bg-white rounded-full text-black p-2  hover:bg-gray-300 transition">
                 Criar Conta
               </button>
             </Link>
-            
+            <button className="w-full flex items-center rounded-full justify-center bg-black text-white p-2  hover:bg-gray-300 transition">
+              <img src="/google-logo.png" alt="Google Logo" className="w-5 h-5 mr-2" />
+              ENTRAR COM GOOGLE
+            </button>
           </div>
         </div>
       </div>
