@@ -1,4 +1,3 @@
-// /auth/register
 'use client';
 
 import { useState } from 'react';
@@ -9,9 +8,40 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validação simples para garantir que as senhas coincidem
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem!');
+      return;
+    }
+
+    // Simulando o processo de registro
+    try {
+      // Substitua esta parte por sua lógica real de criação de conta (ex: API call)
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        // Redirecionar ou exibir uma mensagem de sucesso
+        alert('Conta criada com sucesso!');
+        // Redirecionar para a página de login
+        window.location.href = '/auth/login';
+      } else {
+        setError('Erro ao criar a conta. Tente novamente.');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Ocorreu um erro. Tente novamente.');
+    }
   };
 
   return (
@@ -41,6 +71,7 @@ export default function RegisterPage() {
 
           {/* aqui é o formulario com os campos */}
           <form onSubmit={handleRegister}>
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
             <div className="mb-4">
               <input
                 type="email"
@@ -73,6 +104,7 @@ export default function RegisterPage() {
                 placeholder="Confirme a Senha"
               />
             </div>
+
           {/* botão pra ir pra criart conta */}
             <button
               type="submit"
