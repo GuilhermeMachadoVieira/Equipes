@@ -75,7 +75,7 @@ export default function RegisterPage() {
 
             <button
               type="submit"
-              className="w-full bg-white text-black p-2 rounded-full rounded hover:bg-gray-300 transition"
+              className="w-full bg-white text-black p-2 rounded-full hover:bg-gray-300 transition"
             >
               Criar Conta
             </button>
