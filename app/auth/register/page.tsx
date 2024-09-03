@@ -60,10 +60,11 @@ export default function RegisterPage() {
       </div>
 
       <div className="w-full max-w-md flex-none bg-blue-900 bg-opacity-80 flex flex-col backdrop-blur justify-center items-center p-5">
-        <div className="p-6 rounded-lg  w-full max-w-md">
-          <div className="flex justify-center mb-4">
-            <img src="\escrita_preta_logo.png" alt="Teacher Web Logo" className="w-56" />
+      <div className="flex justify-center mb-4">
+            <img src="\escrita_preta_logo1.png" alt="Teacher Web Logo" className="w-56" />
           </div>
+        <div className="p-6 rounded-lg  w-full max-w-md">
+
 
           <form onSubmit={handleRegister}>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}

@@ -33,7 +33,7 @@ export default function RecoverPage() {
         <div className="p-6 rounded-lg  w-full max-w-md">
           {/* Logo */}
           <div className="flex justify-center mb-4">
-            <img src="\escrita_preta_logo.png" alt="Teacher Web Logo" className="w-56" />
+            <img src="\escrita_preta_logo1.png" alt="Teacher Web Logo" className="w-56" />
           </div>
 
           {/* aqui é o formulario com os campos */}
